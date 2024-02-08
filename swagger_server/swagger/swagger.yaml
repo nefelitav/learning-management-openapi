@@ -9,7 +9,7 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
-- url: https://virtserver.SwaggerHub.com/tutorial/1.0.0
+- url: https://virtserver.swaggerhub.com/tutorial/1.0.0
   description: SwaggerHub API Auto Mocking
 paths:
   /student/{student_id}:
@@ -86,7 +86,7 @@ paths:
         "400":
           description: "invalid input, object invalid"
         "409":
-          description: an existing already exists
+          description: Student already exists
       x-openapi-router-controller: swagger_server.controllers.default_controller
 components:
   schemas:
