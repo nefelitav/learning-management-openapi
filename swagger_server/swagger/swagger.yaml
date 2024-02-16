@@ -92,7 +92,6 @@ components:
   schemas:
     Student:
       required:
-      - student_id
       - first_name
       - last_name
       type: object

@@ -48,7 +48,7 @@ db = client['students']
 collection = db['students']  
 
 def add(student=None):
-    existing_student = collection.find_one({'student_id': student.student_id})
+    existing_student = collection.find_one({'first_name': student.first_name, 'last_name': student.last_name})
     if existing_student:
         return 'already exists', 409
 
@@ -68,4 +68,4 @@ def delete(student_id=None):
     result = collection.delete_one({'student_id': student_id})
     if result.deleted_count == 0:
         return 'not found', 404
-    return str(int(student_id))
+    return student_id

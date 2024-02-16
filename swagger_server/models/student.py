@@ -15,11 +15,11 @@ class Student(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, student_id: int=None, first_name: str=None, last_name: str=None, grade_records: List[GradeRecord]=None):  # noqa: E501
+    def __init__(self, student_id: float=None, first_name: str=None, last_name: str=None, grade_records: List[GradeRecord]=None):  # noqa: E501
         """Student - a model defined in Swagger
 
         :param student_id: The student_id of this Student.  # noqa: E501
-        :type student_id: int
+        :type student_id: float
         :param first_name: The first_name of this Student.  # noqa: E501
         :type first_name: str
         :param last_name: The last_name of this Student.  # noqa: E501
@@ -28,7 +28,7 @@ class Student(Model):
         :type grade_records: List[GradeRecord]
         """
         self.swagger_types = {
-            'student_id': int,
+            'student_id': float,
             'first_name': str,
             'last_name': str,
             'grade_records': List[GradeRecord]
@@ -57,22 +57,22 @@ class Student(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def student_id(self) -> int:
+    def student_id(self) -> float:
         """Gets the student_id of this Student.
 
 
         :return: The student_id of this Student.
-        :rtype: int
+        :rtype: float
         """
         return self._student_id
 
     @student_id.setter
-    def student_id(self, student_id: int):
+    def student_id(self, student_id: float):
         """Sets the student_id of this Student.
 
 
         :param student_id: The student_id of this Student.
-        :type student_id: int
+        :type student_id: float
         """
 
         self._student_id = student_id
