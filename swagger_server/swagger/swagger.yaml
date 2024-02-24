@@ -30,15 +30,15 @@ paths:
           format: integer
       responses:
         "200":
-          description: successful operation
+          description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Student'
         "400":
-          description: invalid ID
+          description: Invalid ID
         "404":
-          description: not found
+          description: Not found
       x-openapi-router-controller: swagger_server.controllers.default_controller
     delete:
       summary: deletes a student
@@ -57,7 +57,7 @@ paths:
           format: integer
       responses:
         "200":
-          description: successful operation
+          description: Successful operation
         "400":
           description: Bad request. User ID must be an integer and larger than 0.
         "404":
@@ -76,7 +76,7 @@ paths:
               $ref: '#/components/schemas/Student'
       responses:
         "200":
-          description: created
+          description: Created
           content:
             application/json:
               schema:
@@ -84,7 +84,7 @@ paths:
                 format: integer
                 x-content-type: application/json
         "400":
-          description: "invalid input, object invalid"
+          description: Invalid input, object invalid
         "409":
           description: Student already exists
       x-openapi-router-controller: swagger_server.controllers.default_controller
@@ -132,4 +132,3 @@ components:
       example:
         subject_name: DevOps
         grade: 10
-
