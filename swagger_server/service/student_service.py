@@ -41,11 +41,14 @@ from functools import reduce
 
 from bson import json_util
 import json
-from pymongo import MongoClient
+from pymongo import MongoClient, ASCENDING
 
 client = MongoClient('mongodb://mongo:27017')
 db = client['students']  
 collection = db['students']  
+
+def get_student_count():
+    return collection.count_documents({})
 
 def add(student=None):
     existing_student = collection.find_one({'first_name': student.first_name, 'last_name': student.last_name})
@@ -53,11 +56,11 @@ def add(student=None):
         return 'already exists', 409
 
     result = collection.insert_one(student.to_dict())
-    student_id = result.inserted_id
-    return str(student_id)
+    student_count = get_student_count()
+    return student_count
 
 def get_by_id(student_id=None):
-    student = collection.find_one({'student_id': int(student_id)})
+    student = collection.find_one({}, {'_id': 0}, sort=[("timestamp", ASCENDING)], skip=int(student_id)-1)
     if not student:
         return 'not found', 404
     student['student_id'] = student_id
@@ -65,7 +68,9 @@ def get_by_id(student_id=None):
     
 
 def delete(student_id=None):
-    result = collection.delete_one({'student_id': student_id})
-    if result.deleted_count == 0:
-        return 'not found', 404
-    return student_id
+    student = collection.find_one({}, sort=[("timestamp", ASCENDING)], skip=int(student_id)-1)
+    if student:
+        result = collection.delete_one({'_id': student['_id']})
+        if result.deleted_count != 0:
+            return student_id
+    return 'not found', 404
