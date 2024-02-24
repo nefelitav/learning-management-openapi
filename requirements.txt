@@ -7,4 +7,3 @@ swagger-ui-bundle >= 0.0.2
 Flask~=2.2.2
 six~=1.16.0
 tinydb>=4.7.1
-Flask-PyMongo
